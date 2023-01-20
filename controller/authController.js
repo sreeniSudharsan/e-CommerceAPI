@@ -44,7 +44,7 @@ const login = async(req, res) => {
         throw new CustomError.UnauthenticatedError('User does not exist by this email')
     }
 
-    const isPasswordCorrect = await User.comparePassword(password);
+    const isPasswordCorrect = await user.comparePassword(password);
     if(!isPasswordCorrect){
         throw new CustomError.UnauthenticatedError('Invalid Credentials');
     }
