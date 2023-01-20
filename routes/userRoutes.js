@@ -7,7 +7,7 @@ const {getAllUsers,
     updateUserPassword}  = require('../controller/userController');
 
 
-router.route('/').get(getAllUsers)
+router.route('/').get(authenticateUser, getAllUsers)
 
 router.route('/showMe').get(showCurrentUser)
 router.patch('/updateUser', updateUser)
