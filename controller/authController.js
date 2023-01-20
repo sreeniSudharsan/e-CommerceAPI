@@ -66,7 +66,7 @@ const logout = async(req, res) => {
         httpOnly: true, 
         expires: new Date(Date.now() /*+ 2 * 1000*/)
     });
-    res.status(StatusCodes.OK),json({msg: 'User Logged Out!'})
+    res.status(StatusCodes.OK).json({msg: 'User Logged Out!'})
     
 };
 

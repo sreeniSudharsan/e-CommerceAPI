@@ -42,7 +42,7 @@ UserSchema.pre('save', async function(){
     this.password = await bcrypt.hash(this.password, salt);
 });
 
-UserSchema.methods.comparePassword = async function(candidatePassword){
+UserSchema.method.comparePassword = async function(candidatePassword){
     const isMatch = await bcrypt.compare(candidatePassword, this.password);
     return isMatch; //this returns a bool type, comparing the candidate password and the the password that is passed
 }
