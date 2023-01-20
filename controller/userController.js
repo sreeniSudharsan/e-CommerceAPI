@@ -1,5 +1,10 @@
+const User = require("../models/user");
+const {StatusCodes} = require('http-status-codes');
+const CustomError = require('../errors');
+
+
 const getAllUsers= async(req, res)=> {
-        res.json({mssg: "getAllUsers"})
+    const user = await User.find('user')
 };
 
 const getSingleUser = async(req, res)=> {

@@ -10,8 +10,8 @@ const {getAllUsers,
 router.route('/').get(getAllUsers)
 
 router.route('/showMe').get(showCurrentUser)
-router.post('/updateUser', updateUser)
-router.post('/updateUserPassword',updateUserPassword)
+router.patch('/updateUser', updateUser)
+router.patch('/updateUserPassword',updateUserPassword)
 
 router.route('/:id').get(getSingleUser)
 
