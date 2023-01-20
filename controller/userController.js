@@ -4,11 +4,16 @@ const CustomError = require('../errors');
 
 
 const getAllUsers= async(req, res)=> {
-    const user = await User.find('user')
+    const users = await User.find({role:'user'})
+    res.status(StatusCodes.OK).json({ users});
 };
 
 const getSingleUser = async(req, res)=> {
-    res.json({mssg: "getSingleUser route"})
+    const user = await User.findOne({_id:req.params.id}).select('-password');
+    if(!user){
+        throw new CustomError.NotFoundError(`No user with id: ${req.params.id}`)
+    }
+    res.status(StatusCodes.OK).json({ user});
 };
 
 const showCurrentUser = async(req, res)=> {
