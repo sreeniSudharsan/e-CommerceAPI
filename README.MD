@@ -6,4 +6,7 @@ This is a pure API framework for a e-Commerce website built using Node, Express 
 ## Future Goals for the Project
 
  > Add Front-End to the project using React
+
+
+
  > Upgrade functionality with reccomender systems 
