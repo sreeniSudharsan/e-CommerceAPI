@@ -2,6 +2,7 @@ const User = require('../models/user');
 const {StatusCodes} = require('http-status-codes');
 const CustomError = require('../errors');
 const {attachCookies} = require('../utils');
+const {createTokenUser} = require('../utils')
 
 
 //REGISTER CONTROLLER

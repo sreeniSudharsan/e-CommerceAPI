@@ -1,0 +1,6 @@
+const createTokenUser = (user) => {
+    return {name:user.name, id: user._id, role:user.role} // This sends back the tokenUser with the JSON webtoken, which allows the user to view the contents
+}
+
+
+module.exports = createTokenUser;
