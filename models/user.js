@@ -38,7 +38,10 @@ const UserSchema = new mongoose.Schema({
 })
 
 UserSchema.pre('save', async function(){
-    const salt = await bcrypt.genSalt(10);
+    console.log(this.modifiedPaths());
+    console.log(this.isModified('name'));
+    if (!this.isModified('password')) return; //Since we're calling the save hook on the update User controller. The pre-save is run one more time hashing the password once more
+    const salt = await bcrypt.genSalt(10);    // Thus we're adding the above line in order to create a check if the password is being changed. If not, then we don't, then it just returns without changing the password
     this.password = await bcrypt.hash(this.password, salt);
 });
 

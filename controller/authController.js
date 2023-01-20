@@ -20,8 +20,7 @@ const register = async(req, res) => {
     const role = isFirstAccount? 'admin': 'user';
     
     const user = await User.create({name, email, password, role}); /*this destructuring as name, email and password makes sure that none can add the admin role to  the req.body*/ 
-    const tokenUser = {name:user.name, id: user._id, role:user.role} // This sends back the tokenUser with the JSON webtoken, which allows the user to view the contents
-    
+    const tokenUser = createTokenUser(user)    
     attachCookies({res, user:tokenUser}) //For more clarity, check the jwt.js in utils folder
  
   //  res.status(StatusCodes.CREATED).json({ user:user}); 
@@ -50,11 +49,10 @@ const login = async(req, res) => {
         throw new CustomError.UnauthenticatedError('Invalid Credentials');
     }
 
-    const tokenUser = {name:user.name, id: user._id, role:user.role} // This sends back the tokenUser with the JSON webtoken, which allows the user to view the contents
-    
+    const tokenUser = createTokenUser(user);
     attachCookies({res, user:tokenUser})
 
-    res.status(StatusCodes.CREATED).json({user: tokenUser})
+    res.status(StatusCodes.OK).json({user: tokenUser})
 
 };
 
