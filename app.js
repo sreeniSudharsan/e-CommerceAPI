@@ -12,6 +12,7 @@ const fileUpload = require('express-fileupload')
 
 //Route Imports
 const authRouter = require('./routes/authRoutes');
+const reviewRouter = require('./routes/reviewRoutes')
 const userRouter = require('./routes/userRoutes');
 const productRouter = require('./routes/productRoutes')
 //Database
@@ -29,6 +30,7 @@ app.use(express.static('./public/uploads'));
 app.use(fileUpload)
 
 app.use('/api/v1/auth',authRouter);
+app.use('/api/v1/reviews', reviewRouter)
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/product', productRouter)
 app.get('/api/v1/auth', (req, res)=> {
