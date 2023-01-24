@@ -16,11 +16,9 @@ const createReview = async(req, res) => {
 
     req.body.user = req.user.userId
 
-    const alreadyExists = await Review.findOne(
-        {
+    const alreadyExists = await Review.findOne({
             product:productId, user:req.user.userId
-        }
-    )
+        })
     if(!alreadyExists){
         throw new CustomError.BadRequestError('Already Submitted Review for this Product')
     }
@@ -29,12 +27,19 @@ const createReview = async(req, res) => {
     res.status(StatusCodes.CREATED).json({ productReview})
 }
 
-const getAllReviews = (req, res) => {
-    res.send("All reviews");
+const getAllReviews = async(req, res) => {
+    const review = await Review.find({});
+    res.status(StatusCodes.OK).json({reviews, count:reviews.length})
 }
 
-const getSingleReview = (req, res) => {
-    res.send("Get single review")
+const getSingleReview = async(req, res) => {
+    const {id:reviewId} = req.params;
+    const review = await Review.find({_id:reviewId});
+
+    if(!review){
+        throw new CustomError.NotFoundError('Review Not Found')
+    }
+    res.status(StatusCodes.OK).json({review})
 }
 
 const updateReview = (req, res) => {
