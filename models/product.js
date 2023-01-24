@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const ProductScheme = new mongoose.Schema({
    name : {
     type:String,
@@ -65,7 +64,20 @@ const ProductScheme = new mongoose.Schema({
         required: true
     }
 
-},{timestamps: true},
+},{timestamps: true, toJSON: {virtuals:true}, toObject: {virutals: true}},
 );
+
+ProductScheme.virutal('reviews', {
+    ref: 'Review',
+    localField: '_id',
+    foreignField: 'product', 
+    justOne: false,
+    // match:{rating:5}
+})
+
+ProductScheme.pre('remove', async function(){
+    await this.model('Review').deleteMany({product:this._id}) 
+})
+
 
 module.exports = mongoose.model('Product', ProductScheme)

@@ -28,7 +28,7 @@ const createReview = async(req, res) => {
 }
 
 const getAllReviews = async(req, res) => {
-    const review = await Review.find({});
+    const review = await Review.find({}).populate({path: 'product', select: 'name company price'});
     res.status(StatusCodes.OK).json({reviews, count:reviews.length})
 }
 
@@ -65,7 +65,6 @@ const updateReview = async(req, res) => {
 }
 
 
-
 const deleteReview = async(req, res) => {
 
     const {id:reviewId} = req.params;
@@ -82,11 +81,18 @@ const deleteReview = async(req, res) => {
 
 }
 
+const getSingleProductReviews = async(req, res) => {
+    const {id:productId} = req.params
+    const reviews = await Review.find({product:productId})
+    res.status(StatusCodes.OK).json({reviews, count: reviews.length})
+}
+
 
 module.exports = {
     getAllReviews,
     createReview,
     getSingleReview,
     updateReview,
-    deleteReview
+    deleteReview,
+    getSingleProductReviews
 }
