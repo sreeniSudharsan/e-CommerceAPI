@@ -42,12 +42,44 @@ const getSingleReview = async(req, res) => {
     res.status(StatusCodes.OK).json({review})
 }
 
-const updateReview = (req, res) => {
-    res.send("Update Review")
+
+
+const updateReview = async(req, res) => {
+    const {id:reviewId} = req.params;
+    const {rating, title, comment} = req.body;
+    const review = await Review.findOne({_id:reviewId})
+    if(!review){
+        throw new CustomError.NotFoundError('Error! Review not Found')
+    }
+ 
+    checkPermissions(req.user, review.user);
+
+    review.rating = rating;
+    review.title = title;
+    review.comment = comment;
+    
+    await review.save();
+
+    res.status(StatusCodes.OK).send('Review has been deleted')
+
 }
 
-const deleteReview = (req, res) => {
-    res.send("Delete a Review")
+
+
+const deleteReview = async(req, res) => {
+
+    const {id:reviewId} = req.params;
+    const review = await Review.findOne({_id:reviewId})
+    if(!review){
+        throw new CustomError.NotFoundError('Error! Review not Found')
+    }
+ 
+    checkPermissions(req.user, review.user);
+
+    await review.remove();
+
+    res.status(StatusCodes.OK).send('Review has been deleted')
+
 }
 
 
