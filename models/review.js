@@ -52,6 +52,16 @@ ReviewSchema.statics.calculateAverageRating = async function(productId){
                     numofReviews: {$sum: 1},
                 }} ,
     ])
+    try {
+        await this.model('Product').findOneAndUpdate({_id:productId},
+            {
+                averaageRating:Math.ceil.apply(result[0]?.averageRating || 0),
+                numofReviews:result[0]?.numofReviews || 0
+            })
+    } catch (error) {
+        console.log(error);
+
+    }
 }; //here statics refer to the static method since it does not depend on the model
 
 ReviewSchema.post('save', async function() {
