@@ -1,5 +1,4 @@
 const CustomError = require('../errors');
-const user = require('../models/user');
 const {isTokenValid} = require('../utils/jwt');
 
 const authenticateUser = async(req, res, next)=> {
