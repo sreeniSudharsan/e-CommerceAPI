@@ -1,5 +1,5 @@
-const Order = require('../models/Order');
-const Product = require('../models/Product');
+const Order = require('../models/order');
+const Product = require('../models/product');
 
 const { StatusCodes } = require('http-status-codes');
 const CustomError = require('../errors');
@@ -80,10 +80,12 @@ const getSingleOrder = async (req, res) => {
   checkPermissions(req.user, order.user);
   res.status(StatusCodes.OK).json({ order });
 };
+
 const getCurrentUserOrders = async (req, res) => {
   const orders = await Order.find({ user: req.user.userId });
   res.status(StatusCodes.OK).json({ orders, count: orders.length });
 };
+
 const updateOrder = async (req, res) => {
   const { id: orderId } = req.params;
   const { paymentIntentId } = req.body;
@@ -106,5 +108,5 @@ module.exports = {
   getSingleOrder,
   getCurrentUserOrders,
   createOrder,
-  updateOrder,
-};
+  updateOrder
+}

@@ -21,6 +21,6 @@ router.route('/uploadImage').post([authenticateUser, authorizePermissions('admin
 router.route('/:id').get(getSingleProduct).patch([authenticateUser, authorizePermissions('admin')], updateProduct)
                     .delete([authenticateUser, authorizePermissions('admin')], deleteProduct)
 
-route.route('/:id/reviews').get(getSingleProductReviews)                    
+router.route('/:id/reviews').get(getSingleProductReviews)                    
 
 module.exports = router;
