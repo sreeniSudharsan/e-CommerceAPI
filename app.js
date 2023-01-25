@@ -15,6 +15,7 @@ const authRouter = require('./routes/authRoutes');
 const reviewRouter = require('./routes/reviewRoutes')
 const userRouter = require('./routes/userRoutes');
 const productRouter = require('./routes/productRoutes')
+const orderRouter = require('./routes/orderRoutes')
 //Database
 const connectDB = require('./db/connect');
 
@@ -33,6 +34,7 @@ app.use('/api/v1/auth',authRouter);
 app.use('/api/v1/reviews', reviewRouter)
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/product', productRouter)
+app.use('/api/v1/orders', orderRouter)
 app.get('/api/v1/auth', (req, res)=> {
     // console.log(req.cookies);
     console.log(req.signedCookies)
