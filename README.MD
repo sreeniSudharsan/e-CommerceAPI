@@ -5,8 +5,6 @@ This is a pure API framework for a e-Commerce website built using Node, Express 
 
 ## Current Project Status
 
-* Fix bugs with regards to the routes
-
 * Need to add Documentation for the Routes
 
 
