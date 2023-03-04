@@ -3,10 +3,6 @@
 
 This is a pure API framework for a e-Commerce website built using Node, Express and Mongo DB
 
-## Current Project Status
-
-* Need to add Documentation for the Routes
-
 
 
 ## Goals
