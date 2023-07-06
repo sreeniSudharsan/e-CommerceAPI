@@ -3,6 +3,7 @@ const { StatusCodes } = require('http-status-codes');
 const jwt = require('jsonwebtoken');
 
 
+//Creating a JWT Token
 const createJWT = ({payload}) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, 
         {expiresIn:process.env.JWT_LIFETIME
@@ -10,7 +11,9 @@ const createJWT = ({payload}) => {
     return token;
 };
 
+// Checking if the token is valid
 const isTokenValid = ({token}) => jwt.verify(token, process.env.JWT_SECRET)
+
 
 const attachCookies = ({res, user}) => {
     

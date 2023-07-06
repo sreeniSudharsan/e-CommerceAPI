@@ -1,3 +1,8 @@
+
+
+// This piece of code is redundant as it uses a JWT token instead of signed cookies to perform authentication 
+
+
 const CustomError = require('../errors');
 const { isTokenValid } = require('../utils/jwt');
 
@@ -42,4 +47,4 @@ const authorizeRoles = (...roles) => {
   };
 };
 
-module.exports = { authenticateUser, authorizeRoles };
+module.exports = { authenticateUser, authorizeRoles};
