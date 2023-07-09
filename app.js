@@ -28,6 +28,8 @@ const connectDB = require('./db/connect');
 const notFoundMiddleWare = require('./middleware/not-found');
 const errorHandlerMiddleWare = require('./middleware/error-handler');
 
+
+// Express Rate Limiter
 app.use(
     rateLimiter({
       windowMs: 15 * 60 * 1000,
@@ -37,13 +39,15 @@ app.use(
 app.use(morgan('tiny'));
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
+
+// additional security packages. 
 app.use(helmet());
 app.use(cors());
 app.use(xss());
 app.use(mongoSanitize());
 
 // static file uploads
-app.use(express.static('./public/upload/vader.jpg'));
+app.use(express.static('./public'));
 app.use(fileUpload());
 
 // Routes
