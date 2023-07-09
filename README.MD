@@ -9,6 +9,8 @@ Keywords: Node, Express, MongoDB, bcyrpt, cors,
 
 The application's route documentation has been built using DocGen and deployed on Render https://ecommerceapi-j9hh.onrender.com/
 
+![RenderDeployment](./public/upload/e-1.png)
+
 
 ### Localhost Deployment
 
