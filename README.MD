@@ -32,6 +32,13 @@ With that done, the project is pretty much ready to run. All you have to do is r
 npm run dev
 
 ```
-
 <!-- ```
 You can view the route documentation of the localhost deployment on your browser using the URL, https://localhost:5000  or you can test out the routes using the PostmanAPI, whatever floats your boat. Hope that it clears up! :^) -->
+
+#### Additional Improvements for the Project: 
+
+> add frontend 
+
+> add reccomender engine
+
+> explore more on seperating user and admin roles. 
