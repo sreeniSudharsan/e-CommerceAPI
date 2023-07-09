@@ -5,10 +5,15 @@ require('express-async-errors');
 const express = require('express');
 const app = express();
 
-//
+//additional middlewares and security packages
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
+const rateLimiter = require('express-rate-limit');
+const helmet = require('helmet');
+const xss = require('xss-clean');
+const cors = require('cors');
+const mongoSanitize = require('express-mongo-sanitize');
 
 //Route Imports
 const authRouter = require('./routes/authRoutes');
@@ -23,13 +28,25 @@ const connectDB = require('./db/connect');
 const notFoundMiddleWare = require('./middleware/not-found');
 const errorHandlerMiddleWare = require('./middleware/error-handler');
 
+app.use(
+    rateLimiter({
+      windowMs: 15 * 60 * 1000,
+      max: 60,
+    })
+  );
 app.use(morgan('tiny'));
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
+app.use(helmet());
+app.use(cors());
+app.use(xss());
+app.use(mongoSanitize());
 
+// static file uploads
 app.use(express.static('./public/upload/vader.jpg'));
 app.use(fileUpload());
 
+// Routes
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/reviews', reviewRouter)
 app.use('/api/v1/user', userRouter)
