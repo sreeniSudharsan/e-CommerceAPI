@@ -5,7 +5,9 @@ This is a pure API framework for a e-Commerce website. This project delves deep 
 
 Keywords: Node, Express, MongoDB, bcyrpt, cors, 
 
-## Deployment
+## Deployment 
+
+The application's route documentation has been built using DocGen and deployed on Render
 
 
 ### Localhost Deployment
