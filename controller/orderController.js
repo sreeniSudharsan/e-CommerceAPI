@@ -50,7 +50,7 @@ const createOrder = async (req, res) => {
   // get client secret
   const paymentIntent = await fakeStripeAPI({
     amount: total,
-    currency: 'usd',
+    currency: 'Rupee',
   });
 
   const order = await Order.create({

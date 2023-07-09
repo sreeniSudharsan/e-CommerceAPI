@@ -19,7 +19,7 @@ const attachCookies = ({res, user}) => {
     
     const token = createJWT({payload:user});
      
-    const oneDay = 1000 * 60 * 60 * 24
+    const oneDay = 1000 * 60 * 60 * 24 // its in milliseconds;
 
     res.cookie('token', token, {
         httpOnly:true,
@@ -28,7 +28,7 @@ const attachCookies = ({res, user}) => {
         signed: true
     });
 
-    res.status(StatusCodes.CREATED).json({ user })
+    res.status(StatusCodes.CREATED).json({ user });
 
 }
 

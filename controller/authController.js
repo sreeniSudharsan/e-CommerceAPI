@@ -20,8 +20,8 @@ const register = async(req, res) => {
     const user = await User.create({name, email, password, role}); /*this destructuring as name, email and password makes sure that none can add the admin role to  the req.body*/ 
     const tokenUser = createTokenUser(user)    
     attachCookies({res, user:tokenUser}) //For more clarity, check the jwt.js in utils folder
- 
-  //  res.status(StatusCodes.CREATED).json({ user:user}); 
+    // res.send('Register Route')
+   res.status(StatusCodes.CREATED).json({ user:user}); 
 
 };
 
