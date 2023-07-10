@@ -1,7 +1,7 @@
 
 # Introduction
 
-In short, This project is a REST API framework for an e-Commerce website. This project delves deep into the functionality of the back-end, where it explores how different e-commerce websites employ their services and the logic that has been inbuilt into them. This project has been built with a plethora of libraries that allows for safe and secures practise for it to be production ready.  
+In short, This project is a RESTful API service for an e-Commerce website. This project delves deep into the functionality of the back-end, where it explores how different e-commerce websites employ their services and the logic that has been inbuilt into them. This project has been built with a plethora of libraries that allows for safe and secures practise for it to be production ready.  
 
 Keywords: Node, Express, MongoDB, bcyrpt, cors, 
 
